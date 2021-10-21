@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/yaakov7654247u446t3/navy_efroyim#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.11",
+    "uninstall": "^0.0.0",
     "validator": "^13.6.0"
   },
   "devDependencies": {

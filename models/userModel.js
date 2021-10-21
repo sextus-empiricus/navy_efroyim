@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const {hash} = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -25,8 +26,18 @@ const userSchema = new mongoose.Schema({
             },
             message: 'Passwords are not the same.'
         }
+    },
+    sentAt: {
+        type: Date,
+        default: new Date()
     }
 });
+
+userSchema.pre('save', async function (next) {
+    this.password = await hash(this.password, 12);
+    this.passwordConfirm = undefined;
+    next();
+})
 
 const userModel = mongoose.model('user', userSchema);
 

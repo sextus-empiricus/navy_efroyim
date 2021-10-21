@@ -1,6 +1,6 @@
 const User = require('../models/userModel.js');
 
-exports.signUp = async (req, res, next) => {
+exports.createUser = async (req, res, next) => {
     try {
         const newUser = await User.create(req.body);
         res.status(201).json({
@@ -14,7 +14,20 @@ exports.signUp = async (req, res, next) => {
         })
     }
 };
-
+exports.getUser = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.status(200).json({
+            status: 'success',
+            data: user
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: 'failed',
+            message: err.errors
+        })
+    }
+};
 exports.updateUser = async (req, res, next) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true});
@@ -29,3 +42,17 @@ exports.updateUser = async (req, res, next) => {
         })
     }
 };
+exports.deleteUser = async (req, res, next) => {
+    try {
+        const deletedUser = await User.findByIdAndDelete(req.params.id);
+        res.status(204).json({
+            status: 'success',
+            data: deletedUser
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: 'failed',
+            message: err.errors
+        })
+    }
+}
