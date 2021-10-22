@@ -19,7 +19,10 @@ const messageSchema = new mongoose.Schema({
     key: {
         type: String
     },
-    decryptedAt: Date,
+    decryptedAt: {
+        type: Date,
+        default: undefined
+    },
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
@@ -32,4 +35,4 @@ const messageSchema = new mongoose.Schema({
 
 const messageModel = mongoose.model('message', messageSchema);
 
-module.exports = messageModel; //@TODO - pracujemy nad routami messages;
+module.exports = messageModel;
