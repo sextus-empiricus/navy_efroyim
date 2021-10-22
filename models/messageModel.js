@@ -27,6 +27,10 @@ const messageSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: [true, 'Message have to belong to particular user.']
+    },
+    sentAt: {
+        type: Date,
+        default: new Date()
     }
 }, {
     toJSON: {virtuals: true},

@@ -27,10 +27,9 @@ const userSchema = new mongoose.Schema({
             message: 'Passwords are not the same.'
         }
     },
-    sentAt: {
-        type: Date,
-        default: new Date()
-    }
+}, {
+    toJSON: {virtuals: true},
+    toObject: {virtuals: true}
 });
 
 userSchema.pre('save', async function (next) {
