@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const {encryptText} = require('../utils/cipher.js')
 
 const messageSchema = new mongoose.Schema({
     title: {
@@ -15,9 +16,12 @@ const messageSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please provide your message content.'],
     },
-
-    key: {
-        type: String
+    iv: {
+        type: String,
+    },
+    password: {
+        type: String,
+        required: [true, 'Please provide your password necessary to decrypt a message.'],
     },
     decryptedAt: {
         type: Date,
@@ -36,6 +40,16 @@ const messageSchema = new mongoose.Schema({
     toJSON: {virtuals: true},
     toObject: {virtuals: true}
 });
+
+messageSchema.pre('save', async function (next) {
+    console.log('test')
+    const obj = await encryptText(this.message, this.password, process.env.CRYPTO_SALT);
+    this.message = obj.encrypted;
+    this.iv = obj.iv;
+    this.password = undefined;
+    next();
+})
+
 
 const messageModel = mongoose.model('Message', messageSchema);
 
