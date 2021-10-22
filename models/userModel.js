@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
                 return this.passwordConfirm === this.password;
             },
             message: 'Passwords are not the same.'
+        },
+        createdAt: {
+            type: Date,
+            default: new Date()
         }
     },
 }, {
@@ -32,12 +36,24 @@ const userSchema = new mongoose.Schema({
     toObject: {virtuals: true}
 });
 
+userSchema.virtual('messages', {
+    ref: 'Message',
+    foreignField: 'user',
+    localField: '_id'
+})
+
+userSchema.pre(/^find/, function (next) {
+    this.populate('messages');
+    next();
+})
+
+
 userSchema.pre('save', async function (next) {
     this.password = await hash(this.password, 12);
     this.passwordConfirm = undefined;
     next();
 })
 
-const userModel = mongoose.model('user', userSchema);
+const userModel = mongoose.model('User', userSchema);
 
 module.exports = userModel;

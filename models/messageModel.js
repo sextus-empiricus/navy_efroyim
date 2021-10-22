@@ -37,6 +37,6 @@ const messageSchema = new mongoose.Schema({
     toObject: {virtuals: true}
 });
 
-const messageModel = mongoose.model('message', messageSchema);
+const messageModel = mongoose.model('Message', messageSchema);
 
 module.exports = messageModel;
