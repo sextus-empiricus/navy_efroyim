@@ -19,6 +19,7 @@ body {
     align-items: center;
     background-color: #2d2b38;
     height: 95vh;
+    overflow: hidden;
 }
 
 .table-hide {
@@ -65,10 +66,9 @@ input {
     display: block;
     color: #4DF45AFF;
     font-family: 'VT323', monospace;
-    font-size: 2rem;
+    font-size: 2.5rem;
     background: 0;
     width: 100%;
-    /*max-width: 80%;*/
     border: 0;
     border-bottom: solid 1px rgba(253, 153, 255, 0.1);
 }
@@ -118,6 +118,7 @@ button {
 button:active {
     transform: scale(0.98);
     color: #00ff11;
+    background-color: rgba(109, 93, 141);
 }
 
 button:focus, textarea:focus, input:focus {

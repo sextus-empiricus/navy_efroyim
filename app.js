@@ -6,6 +6,7 @@ const hbs = require('express-handlebars');
 const errorGlobalHandler = require('./controllers/errorController.js');
 const userRouter = require('./routes/userRouter.js');
 const messagesRouter = require('./routes/messagesRouter.js');
+const viewRouter = require('./routes/viewRotuer.js');
 
 const app = express();
 
@@ -19,21 +20,7 @@ app.set('view engine', '.hbs');
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/messages', messagesRouter);
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
-
-app.get('/register', (req, res) => {
-    res.render('register')
-})
-
-app.get('/login', (req, res) => {
-    res.render('login')
-})
-
-app.get('/message', (req, res) => {
-    res.render('message')
-})
+app.use('/', viewRouter);
 
 app.use(errorGlobalHandler);
 
