@@ -42,7 +42,6 @@ const messageSchema = new mongoose.Schema({
 });
 
 messageSchema.pre('save', async function (next) {
-    console.log('test')
     const obj = await encryptText(this.message, this.password, process.env.CRYPTO_SALT);
     this.message = obj.encrypted;
     this.iv = obj.iv;

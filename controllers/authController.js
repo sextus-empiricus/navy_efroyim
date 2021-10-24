@@ -1,6 +1,7 @@
 const User = require('../models/userModel.js');
 const {promisify} = require('util');
 const sign = promisify(require('jsonwebtoken').sign);
+const verify = promisify(require('jsonwebtoken').verify);
 const AppError = require('../utils/AppError.js');
 const {compare} = require('bcryptjs');
 const catchAsync = require('../utils/catchAsync.js');
@@ -19,11 +20,14 @@ exports.signUp = catchAsync(async (req, res) => {
     })
 })
 exports.signIn = catchAsync(async (req, res, next) => {
+    console.log(req.body)
     if (!req.body.password || !req.body.email) return next(new AppError('Check provided password or email address.', 400));
     const user = await User.findOne({email: req.body.email}).populate('password');
+    if (!user) return next(new AppError('Wrong password or email address.', 403));
     const passCorrect = await compare(req.body.password, user.password);
-    if (!user || !passCorrect) return next(new AppError('Wrong password or email address.', 403));
+    if (!passCorrect) return next(new AppError('Wrong password or email address.', 403));
     const token = await sign({id: user.id}, process.env.JWT_SECRETKEY, {expiresIn: process.env.JWT_EXPIRESIN})
+    console.log({token})
     user.password = undefined;
     res.cookie('navy-efroyim-jwt', token, {
         httpOnly: true,
@@ -41,3 +45,10 @@ exports.logout = catchAsync(async (req, res) => {
         status: 'success',
     })
 });
+exports.protection= catchAsync(async (req, res, next) => {
+    const jwtDecoded = await verify(req.cookies['navy-efroyim-jwt'], process.env.JWT_SECRETKEY);
+    if(!jwtDecoded) return next(new AppError('Please login to continue.', 403))
+    req.user = await User.findById(jwtDecoded.id);
+    console.log(req.user);
+    next();
+})

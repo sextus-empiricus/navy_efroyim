@@ -26,11 +26,11 @@ const userSchema = new mongoose.Schema({
             },
             message: 'Passwords are not the same.'
         },
-        createdAt: {
-            type: Date,
-            default: new Date()
-        }
     },
+    createdAt: {
+        type: Date,
+        default: new Date()
+    }
 }, {
     toJSON: {virtuals: true},
     toObject: {virtuals: true}
