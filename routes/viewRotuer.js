@@ -1,4 +1,5 @@
 const viewController = require('../controllers/viewController.js');
+const authController = require('../controllers/authController.js');
 
 const express = require('express');
 
@@ -8,7 +9,7 @@ router
     .get('/', viewController.home)
     .get('/register', viewController.register)
     .get('/login', viewController.login)
-    .get('/message', viewController.message)
+    .get('/message', authController.protect, viewController.message)
     .get('/thankyou', viewController.thankyou)
 
 module.exports = router;

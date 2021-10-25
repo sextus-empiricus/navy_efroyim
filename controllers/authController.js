@@ -10,24 +10,23 @@ exports.signUp = catchAsync(async (req, res) => {
     const newUser = await User.create(req.body);
     const token = await sign({id: newUser.id}, process.env.JWT_SECRETKEY, {expiresIn: process.env.JWT_EXPIRESIN})
     res.cookie('navy-efroyim-jwt', token, {
-        httpOnly: true,
-        maxAge: 3600000
-    })
-        .status(201).json({
-        status: 'success',
-        token,
-        data: newUser
-    })
+            httpOnly: true,
+            maxAge: 3600000
+        })
+        .status(201)
+        .json({
+            status: 'success',
+            token,
+            data: newUser
+        })
 })
 exports.signIn = catchAsync(async (req, res, next) => {
-    console.log(req.body)
     if (!req.body.password || !req.body.email) return next(new AppError('Check provided password or email address.', 400));
     const user = await User.findOne({email: req.body.email}).populate('password');
     if (!user) return next(new AppError('Wrong password or email address.', 403));
     const passCorrect = await compare(req.body.password, user.password);
     if (!passCorrect) return next(new AppError('Wrong password or email address.', 403));
     const token = await sign({id: user.id}, process.env.JWT_SECRETKEY, {expiresIn: process.env.JWT_EXPIRESIN})
-    console.log({token})
     user.password = undefined;
     res.cookie('navy-efroyim-jwt', token, {
         httpOnly: true,
@@ -45,9 +44,9 @@ exports.logout = catchAsync(async (req, res) => {
         status: 'success',
     })
 });
-exports.protection= catchAsync(async (req, res, next) => {
+exports.protect = catchAsync(async (req, res, next) => {
     const jwtDecoded = await verify(req.cookies['navy-efroyim-jwt'], process.env.JWT_SECRETKEY);
-    if(!jwtDecoded) return next(new AppError('Please login to continue.', 403))
+    if (!jwtDecoded) return next(new AppError('Please login to continue.', 403))
     req.user = await User.findById(jwtDecoded.id);
     console.log(req.user);
     next();

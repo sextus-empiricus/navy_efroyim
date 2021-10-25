@@ -12,6 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({extended: true} ))
 app.use(express.static(join(__dirname, 'public')));
 
 app.engine('.hbs', hbs({extname: '.hbs'}));
@@ -21,6 +22,11 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/messages', messagesRouter);
 
 app.use('/', viewRouter);
+
+app.get('/axios-test', (req, res) => {
+    console.log('axios działa')
+    res.end();
+})
 
 app.use(errorGlobalHandler);
 
