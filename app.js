@@ -24,7 +24,6 @@ app.use('/api/v1/messages', messagesRouter);
 app.use('/', viewRouter);
 
 app.get('/axios-test', (req, res) => {
-    console.log('axios działa')
     res.end();
 })
 

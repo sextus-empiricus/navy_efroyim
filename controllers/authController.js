@@ -48,6 +48,5 @@ exports.protect = catchAsync(async (req, res, next) => {
     const jwtDecoded = await verify(req.cookies['navy-efroyim-jwt'], process.env.JWT_SECRETKEY);
     if (!jwtDecoded) return next(new AppError('Please login to continue.', 403))
     req.user = await User.findById(jwtDecoded.id);
-    console.log(req.user);
     next();
 })
