@@ -32,7 +32,7 @@ exports.signIn = catchAsync(async (req, res, next) => {
         httpOnly: true,
         maxAge: 3600000
     })
-        .status(201).json({
+        .status(200).json({
         status: 'success',
         token,
         data: user

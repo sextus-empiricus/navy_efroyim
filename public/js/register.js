@@ -1,35 +1,5 @@
-const body = document.querySelector('body');
+import {generateWindow, getWindowOut} from './alerts.js';
 const btnRegister = document.getElementById('btn-register');
-
-
-const getWindowOut = () => {
-    window.setTimeout(() => {
-        const currentAlert = document.getElementById('alert');
-        currentAlert.classList.add('get-out');
-    }, 3000);
-}
-
-const generateWindow = (divClasses, h2Classes, content) => {
-
-    const currentAlert = document.getElementById('alert');
-    if (currentAlert) body.removeChild(currentAlert);
-
-    const div = document.createElement('div');
-    div.classList.add('wrapper');
-    divClasses.forEach(el => {
-        div.classList.add(el);
-    })
-    div.id = 'alert';
-    const h2 = document.createElement('h2');
-    h2Classes.forEach(el => {
-        h2.classList.add(el);
-    })
-    h2.classList.add('h2-error');
-    h2.textContent = content;
-
-    div.appendChild(h2);
-    body.append(div);
-}
 
 const signUp = async (email, password, passwordConfirm) => {
     try {
@@ -47,6 +17,9 @@ const signUp = async (email, password, passwordConfirm) => {
             window.setTimeout(() => {
                 location.assign('/message');
             }, 1500)
+        } else {
+            generateWindow(['error'], ['h2-error'], 'Something went wrong.');
+            getWindowOut();
         }
 
     } catch (err) {
@@ -69,12 +42,10 @@ const signUp = async (email, password, passwordConfirm) => {
     }
 };
 
-if (btnRegister) {
-    btnRegister.addEventListener('click', async e => {
-        e.preventDefault();
-        const email = (document.getElementById('input-email')).value;
-        const password = (document.getElementById('input-password')).value;
-        const passwordConfirm = (document.getElementById('input-passwordConfirm')).value;
-        await signUp(email, password, passwordConfirm);
-    })
-}
+btnRegister.addEventListener('click', async e => {
+    e.preventDefault();
+    const email = (document.getElementById('input-email')).value;
+    const password = (document.getElementById('input-password')).value;
+    const passwordConfirm = (document.getElementById('input-passwordConfirm')).value;
+    await signUp(email, password, passwordConfirm);
+})
