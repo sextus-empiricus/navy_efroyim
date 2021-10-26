@@ -18,6 +18,36 @@
     animation: 4s linear 2s infinite alternate-reverse flying1;
 }
 
+.envelope3 {
+    position: absolute;
+    font-size: 100px;
+    z-index: -10;
+    color: rgba(255, 255, 255, 0.05);
+    top: 70vh;
+    left: -400vw;
+    animation: 4s linear 5s infinite alternate-reverse flying1;
+}
+
+.envelope4 {
+    position: absolute;
+    font-size: 100px;
+    z-index: -10;
+    color: rgba(255, 255, 255, 0.05);
+    top: 60vh;
+    left: -400vw;
+    animation: 5s linear 1s infinite alternate-reverse flying1;
+}
+
+.envelope5 {
+    position: absolute;
+    font-size: 100px;
+    z-index: -10;
+    color: rgba(255, 255, 255, 0.05);
+    top: 20vh;
+    left: -400vw;
+    animation: 6s linear 1s infinite alternate-reverse flying1;
+}
+
 @keyframes flying1 {
     0% {
         left: -300vw;

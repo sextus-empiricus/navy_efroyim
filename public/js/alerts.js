@@ -1,11 +1,11 @@
-export function getWindowOut() {
+export function getAlertOut() {
     window.setTimeout(() => {
         const currentAlert = document.getElementById('alert');
         currentAlert.classList.add('get-out');
     }, 4000);
 }
 
-export function generateWindow(divClasses, h2Classes, content) {
+export function generateAlert(divClasses, h2Classes, content) {
     const body = document.querySelector('body');
     const currentAlert = document.getElementById('alert');
     if (currentAlert) body.removeChild(currentAlert);

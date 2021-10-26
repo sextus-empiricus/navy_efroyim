@@ -1,9 +1,8 @@
-import {generateWindow, getWindowOut} from './alerts.js';
+import {generateAlert, getAlertOut} from './alerts.js';
 
 const btnLogin = document.getElementById('btn-login');
 
 const login = async (email, password) => {
-    console.log(email, password)
     try {
         const res = await axios({
             method: 'POST',
@@ -14,17 +13,17 @@ const login = async (email, password) => {
             }
         });
         if (res.data.status === 'success') {
-            generateWindow(['ok'], ['h2-ok'], 'Your are logged in!');
+            generateAlert(['ok'], ['h2-ok'], 'Your are logged in!');
             window.setTimeout(() => {
-                location.assign('/message');
+                location.assign('/cockpit');
             }, 1500)
         } else {
-            generateWindow(['error'], ['h2-error'], 'Something went wrong.');
-            getWindowOut();
+            generateAlert(['error'], ['h2-error'], 'Something went wrong.');
+            getAlertOut();
         }
     } catch (err) {
-        generateWindow(['error'], ['h2-error'], 'Incorrect email address or password.');
-        getWindowOut();
+        generateAlert(['error'], ['h2-error'], 'Incorrect email address or password.');
+        getAlertOut();
     }
 };
 

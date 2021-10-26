@@ -1,0 +1,24 @@
+.user-name-cockpit {
+    color: #4DF45AFF;
+}
+
+.h1-cockpit {
+    font-size: 4rem;
+    font-weight: normal;
+}
+
+.h2-cockpit {
+    font-size: 3rem;
+    font-weight: normal;
+
+}
+.btn-cockpit {
+    display: block;
+    background-color: #3c394a;
+    padding: 30px 50px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 3rem;
+    box-shadow: 3px 3px 5px 0 #23222c;
+    transition: background-color .1s
+}

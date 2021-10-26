@@ -14,6 +14,12 @@ exports.message = (req, res) => {
     res.render('message')
 };
 
+exports.cockpit = (req, res) => {
+    res.render('cockpit', {
+        email: req.user.email
+    })
+};
+
 exports.thankyou = (req, res) => {
     res.render('thankyou')
 };

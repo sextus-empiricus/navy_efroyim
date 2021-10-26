@@ -9,6 +9,7 @@ const catchAsync = require('../utils/catchAsync.js');
 exports.signUp = catchAsync(async (req, res) => {
     const newUser = await User.create(req.body);
     const token = await sign({id: newUser.id}, process.env.JWT_SECRETKEY, {expiresIn: process.env.JWT_EXPIRESIN})
+    req.user = newUser;
     res.cookie('navy-efroyim-jwt', token, {
             httpOnly: true,
             maxAge: 3600000
@@ -28,6 +29,7 @@ exports.signIn = catchAsync(async (req, res, next) => {
     if (!passCorrect) return next(new AppError('Wrong password or email address.', 403));
     const token = await sign({id: user.id}, process.env.JWT_SECRETKEY, {expiresIn: process.env.JWT_EXPIRESIN})
     user.password = undefined;
+    req.user = user;
     res.cookie('navy-efroyim-jwt', token, {
         httpOnly: true,
         maxAge: 3600000

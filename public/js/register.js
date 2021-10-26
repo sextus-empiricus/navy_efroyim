@@ -1,4 +1,4 @@
-import {generateWindow, getWindowOut} from './alerts.js';
+import {generateAlert, getAlertOut} from './alerts.js';
 const btnRegister = document.getElementById('btn-register');
 
 const signUp = async (email, password, passwordConfirm) => {
@@ -13,31 +13,31 @@ const signUp = async (email, password, passwordConfirm) => {
             }
         });
         if (res.data.status === 'success') {
-            generateWindow(['ok'], ['h2-ok'], 'Thank you for a registration!');
+            generateAlert(['ok'], ['h2-ok'], 'Thank you for a registration!');
             window.setTimeout(() => {
                 location.assign('/message');
             }, 1500)
         } else {
-            generateWindow(['error'], ['h2-error'], 'Something went wrong.');
-            getWindowOut();
+            generateAlert(['error'], ['h2-error'], 'Something went wrong.');
+            getAlertOut();
         }
 
     } catch (err) {
         if (err.response.data.message.includes('E11000')) {
-            generateWindow(['error'], ['h2-error'], 'Email address already in use.');
-            getWindowOut();
+            generateAlert(['error'], ['h2-error'], 'Email address already in use.');
+            getAlertOut();
         } else if (err.response.data.message.includes('User validation failed: email')) {
-            generateWindow(['error'], ['h2-error'], 'Please verify if your email address is correct.');
-            getWindowOut();
+            generateAlert(['error'], ['h2-error'], 'Please verify if your email address is correct.');
+            getAlertOut();
         } else if (err.response.data.message.includes('Passwords are not the same.')) {
-            generateWindow(['error'], ['h2-error'], 'Passwords are not the same.');
-            getWindowOut();
+            generateAlert(['error'], ['h2-error'], 'Passwords are not the same.');
+            getAlertOut();
         } else if (err.response.data.message.includes('The password must be at least four characters')) {
-            generateWindow(['error'], ['h2-error'], 'The password must be at least four characters.');
-            getWindowOut();
+            generateAlert(['error'], ['h2-error'], 'The password must be at least four characters.');
+            getAlertOut();
         } else {
-            generateWindow(['error'], ['h2-error'], 'Something went wrong. Please check provided data.');
-            getWindowOut();
+            generateAlert(['error'], ['h2-error'], 'Something went wrong. Please check provided data.');
+            getAlertOut();
         }
     }
 };
