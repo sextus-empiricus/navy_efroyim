@@ -1,3 +1,6 @@
+const Messages = require('../models/messageModel.js');
+
+
 exports.home = (req, res) => {
     res.render('home')
 };
@@ -21,5 +24,13 @@ exports.cockpit = (req, res) => {
 };
 
 exports.thankyou = (req, res) => {
-    res.render('thankyou')
+    res.render('thankyou', {recipient: req.cookies.recipient})
 };
+
+exports.messages = async (req, res) => {
+    const messages = await Messages.find({user: req.user.id}).lean();
+    res.render('messageCards', {
+        length: (messages.length).toString(),
+        messages
+    })
+}

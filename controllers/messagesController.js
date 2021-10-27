@@ -1,8 +1,25 @@
 const Message = require('../models/messageModel.js');
 const catchAsync = require('../utils/catchAsync.js');
+const sendMail = require('../utils/sendMail.js');
 
 exports.createMessage = catchAsync(async (req, res) => {
-    const newMessage = await Message.create(req.body);
+    const newMessage = await Message.create({
+        title: req.body.title,
+        to: req.body.to,
+        password: req.body.password,
+        message: req.body.message,
+        user: req.user.id || req.body.user
+    });
+
+    const mailData = {
+        from: req.user.email,
+        to: req.body.to,
+        subject: `Hello, ${req.user.email} sent you encrypted message!`,
+        text: newMessage.message,   //@TODO - create a message and logic of it
+        // html: "<b>Hello world?</b>"
+    };
+    await sendMail(mailData);
+
     res.status(201).json({
         status: 'success',
         data: newMessage

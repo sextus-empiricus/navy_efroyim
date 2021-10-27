@@ -11,6 +11,7 @@ router
     .get('/login', viewController.login)
     .get('/message', authController.protect, viewController.message)
     .get('/thankyou', viewController.thankyou)
-    .get('/cockpit', authController.protect,viewController.cockpit)
+    .get('/cockpit', authController.protect, viewController.cockpit)
+    .get('/messages', authController.protect, viewController.messages)
 
 module.exports = router;

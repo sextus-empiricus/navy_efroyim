@@ -2,7 +2,7 @@
     <div class="content-wrapper">
         <h1>Send message</h1>
         <h2>Please provide details</h2>
-        <form action="" class="message-form">
+        <form action="" class="message-form" autocomplete="off">
             <label for="input-title" class="label-title">
                 <input type="text" id="input-title" class="input-title" name="title" placeholder="message title">
             </label>
@@ -17,8 +17,10 @@
                 <textarea class="textarea" name="message" id="textarea" placeholder="your message"></textarea>
             </label>
 
-            <button class="btn-register" id="btn-register" type="submit">send</button>
+            <button class="btn-register" id="btn-send" type="submit">send</button>
         </form>
         <a href="/cockpit" class="main">cockpit</a>
     </div>
 </div>
+
+<script type="module" src="./js/message.js"></script>

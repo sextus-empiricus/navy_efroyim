@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route('/')
     .get(messagesController.getAllMessages)
-    .post(messagesController.createMessage)
+    .post(authController.protect, messagesController.createMessage)
 
 router.route('/:id')
     .get(messagesController.getMessage)

@@ -1,4 +1,5 @@
 const btnLogout = document.getElementById('btn-logout');
+const btnShow = document.getElementById('btn-show');
 const btnSend = document.getElementById('btn-send');
 import {generateAlert} from './alerts.js';
 
@@ -27,4 +28,8 @@ btnLogout.addEventListener('click', async () => {
 
 btnSend.addEventListener('click',  () => {
     location.assign('/message')
+})
+
+btnShow.addEventListener('click', ()=>{
+    location.assign('/messages')
 })

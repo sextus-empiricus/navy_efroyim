@@ -25,7 +25,6 @@ const messageSchema = new mongoose.Schema({
     },
     decryptedAt: {
         type: Date,
-        default: undefined
     },
     user: {
         type: mongoose.Schema.ObjectId,
