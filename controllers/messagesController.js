@@ -1,6 +1,7 @@
 const Message = require('../models/messageModel.js');
 const catchAsync = require('../utils/catchAsync.js');
 const sendMail = require('../utils/sendMail.js');
+const {decryptText} = require('../utils/cipher.js');
 
 exports.createMessage = catchAsync(async (req, res) => {
     const newMessage = await Message.create({
@@ -52,5 +53,15 @@ exports.deleteMessage = catchAsync(async (req, res) => {
     res.status(204).json({
         status: 'success',
         data: deletedMessage
+    })
+});
+
+exports.decryptMessage = catchAsync(async (req, res) => {
+    const message = await Message.findById(req.body.id);
+    const decryptedMessage = await decryptText(message.message, req.body.password, process.env.CRYPTO_SALT, message.iv)
+    await Message.findByIdAndUpdate(req.body.id, {decryptedAt: new Date()})
+    res.status(200).json({
+        status: 'success',
+        data: decryptedMessage
     })
 });

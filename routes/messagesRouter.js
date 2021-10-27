@@ -8,6 +8,9 @@ router.route('/')
     .get(messagesController.getAllMessages)
     .post(authController.protect, messagesController.createMessage)
 
+router.route('/decrypt')
+    .post(messagesController.decryptMessage)
+
 router.route('/:id')
     .get(messagesController.getMessage)
     .patch(messagesController.updateMessage)

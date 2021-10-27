@@ -34,3 +34,7 @@ exports.messages = async (req, res) => {
         messages
     })
 }
+
+exports.decrypt = (req, res) => {
+    res.render('decrypt');
+};

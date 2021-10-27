@@ -19,25 +19,25 @@ const signUp = async (email, password, passwordConfirm) => {
             }, 1500)
         } else {
             generateAlert(['error'], ['h2-error'], 'Something went wrong.');
-            getAlertOut();
+            getAlertOut(4000);
         }
 
     } catch (err) {
         if (err.response.data.message.includes('E11000')) {
             generateAlert(['error'], ['h2-error'], 'Email address already in use.');
-            getAlertOut();
+            getAlertOut(4000);
         } else if (err.response.data.message.includes('User validation failed: email')) {
             generateAlert(['error'], ['h2-error'], 'Please verify if your email address is correct.');
-            getAlertOut();
+            getAlertOut(4000);
         } else if (err.response.data.message.includes('Passwords are not the same.')) {
             generateAlert(['error'], ['h2-error'], 'Passwords are not the same.');
-            getAlertOut();
+            getAlertOut(4000);
         } else if (err.response.data.message.includes('The password must be at least four characters')) {
             generateAlert(['error'], ['h2-error'], 'The password must be at least four characters.');
-            getAlertOut();
+            getAlertOut(4000);
         } else {
             generateAlert(['error'], ['h2-error'], 'Something went wrong. Please check provided data.');
-            getAlertOut();
+            getAlertOut(4000);
         }
     }
 };

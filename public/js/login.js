@@ -19,11 +19,11 @@ const login = async (email, password) => {
             }, 1500)
         } else {
             generateAlert(['error'], ['h2-error'], 'Something went wrong.');
-            getAlertOut();
+            getAlertOut(4000);
         }
     } catch (err) {
         generateAlert(['error'], ['h2-error'], 'Incorrect email address or password.');
-        getAlertOut();
+        getAlertOut(4000);
     }
 };
 

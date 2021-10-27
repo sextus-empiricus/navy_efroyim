@@ -19,11 +19,14 @@
                             <p class="msg-card-p">sent at: <span class="msg-card-content">{{toLocaleDate
                                     this.sentAt}}</span></p>
                             <p class="msg-card-p">decrypted at: <span
-                                    class="msg-card-content non-decrypted">{{isDecrypted this.decriptetAt}}</span></p>
+                                    class="msg-card-content {{#if
+                                            this.decryptedAt}}decrypted{{else}}non-decrypted{{/if}}">{{isDecrypted
+                                    this.decryptedAt}}</span></p>
                         </div>
                     </div>
-                    <button class="btn-cockpit btn-messages btn-msg-encrypt">encrypt</button>
-                    <button class="btn-cockpit delete btn-messages btn-msg-delete" data-id="{{this._id}}">delete</button>
+                    <button class="btn-cockpit btn-messages btn-msg-decrypt" data-id="{{this._id}}">decrypt</button>
+                    <button class="btn-cockpit delete btn-messages btn-msg-delete" data-id="{{this._id}}">delete
+                    </button>
                 </div>
             </div>
         {{/each}}

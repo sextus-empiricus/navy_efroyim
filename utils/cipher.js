@@ -17,18 +17,18 @@ async function encryptText(text, password, salt) {
     };
 }
 
-// async function decryptText(text, password, salt, ivHex) {
-//     const algorithm = 'aes-192-cbc';
-//     const key = await scrypt(password, salt, 24);
-//     const iv = Buffer.from(ivHex, 'hex');
-//
-//     const decipher = createDecipheriv(algorithm, key, iv);
-//     let decrypted = decipher.update(text, 'hex', 'utf8');
-//     decrypted += decipher.final('utf8');
-//     return decrypted;
-// }
+async function decryptText(text, password, salt, ivHex) {
+    const algorithm = 'aes-192-cbc';
+    const key = await scrypt(password, salt, 24);
+    const iv = Buffer.from(ivHex, 'hex');
+
+    const decipher = createDecipheriv(algorithm, key, iv);
+    let decrypted = decipher.update(text, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+}
 
 module.exports = {
     encryptText,
-    // decryptText,
+    decryptText,
 };

@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="./styles/decrypt.css">
+
+<div class="table-show table-decrypt">
+    <div class="content-wrapper">
+        <h1 class="h1-decrypt">Decrypting</h1>
+        <form class="message-form" autocomplete="off">
+            <label for="input-password" class="label-password">
+                <input type="password" id="input-password" class="input-password" name="password"
+                       placeholder="password">
+            </label>
+            <label for="textarea">
+                <textarea class="textarea textarea-decrypt" name="message" id="textarea" placeholder="Provide password-key to decrypt a message" disabled></textarea>
+            </label>
+
+            <button class="btn-register" id="btn-decrypt" type="submit">decrypt</button>
+        </form>
+        <a href="/cockpit" class="main">cockpit</a>
+    </div>
+</div>
+
+<script type="module" src="./js/decrypt.js"></script>

@@ -8,7 +8,7 @@ const hbsHelpers = {
     },
     isDecrypted: (decryptedAt) => {
         if(!decryptedAt) return 'not decrypted';
-        decryptedAt.toLocaleString();
+        return decryptedAt.toLocaleString();
     }
 }
 

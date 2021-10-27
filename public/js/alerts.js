@@ -1,8 +1,8 @@
-export function getAlertOut() {
+export function getAlertOut(timeout) {
     window.setTimeout(() => {
         const currentAlert = document.getElementById('alert');
         currentAlert.classList.add('get-out');
-    }, 4000);
+    }, timeout);
 }
 
 export function generateAlert(divClasses, h2Classes, content) {
