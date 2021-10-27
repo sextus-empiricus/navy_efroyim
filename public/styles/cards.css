@@ -94,3 +94,16 @@ body {
 .delete:hover {
     color: rgb(219 125 125)
 }
+
+.fade-out {
+    animation: fade-out .5s ease-out both;
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

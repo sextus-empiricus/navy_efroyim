@@ -1,3 +1,5 @@
 const x = new Date();
 
-console.log(x.toLocaleString());
+const y = x.toLocaleString();
+
+console.log(Date.parse(y));

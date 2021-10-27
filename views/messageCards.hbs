@@ -2,8 +2,8 @@
 
 
 <div class="page-wrapper">
-    <h1 class="h1-messages">Your sent messages:</h1>
-    <h2>messages: <span class="messages-number">{{length}}</span></h2>
+    <h1 class="h1-messages" id="h1-messages">Your sent messages:</h1>
+    <h2 id="h2-messages">messages: <span class="messages-number">{{length}}</span></h2>
     <div class="cards-wrapper">
 
         {{#each messages}}
@@ -12,6 +12,7 @@
                     <h2 class="h2-card">Message {{increment @index}}/{{@root.length}}:</h2>
                     <div class="content-wrapper">
                         <div class="fields-wrapper">
+                            <div id="message-id" hidden>id: {{this._id}}</div>
                             <p class="msg-card-p">title: <span class="msg-card-content">"{{this.title}}"</span>
                             </p>
                             <p class="msg-card-p">sent to: <span class="msg-card-content">{{this.to}}</span></p>
@@ -21,8 +22,8 @@
                                     class="msg-card-content non-decrypted">{{isDecrypted this.decriptetAt}}</span></p>
                         </div>
                     </div>
-                    <button class="btn-cockpit btn-messages" id="btn-copy">encrypt</button>
-                    <button class="btn-cockpit delete btn-messages" id="btn-messages delete">delete</button>
+                    <button class="btn-cockpit btn-messages btn-msg-encrypt">encrypt</button>
+                    <button class="btn-cockpit delete btn-messages btn-msg-delete" data-id="{{this._id}}">delete</button>
                 </div>
             </div>
         {{/each}}
@@ -30,3 +31,6 @@
     </div>
     <a href="/cockpit" class="a-cards">cockpit</a>
 </div>
+<script type="module" src="./js/messageCards.js"></script>
+
+<!--@TODO CSS media messageCARDS - pilne!-->
