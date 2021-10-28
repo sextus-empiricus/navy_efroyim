@@ -2,7 +2,10 @@ const Messages = require('../models/messageModel.js');
 
 
 exports.home = (req, res) => {
-    res.render('home')
+    const isLoggedIn = req.cookies['navy-efroyim-jwt'] ? true : false;
+    res.render('home', {
+        isLoggedIn
+    })
 };
 
 exports.register = (req, res) => {
@@ -36,5 +39,8 @@ exports.messages = async (req, res) => {
 }
 
 exports.decrypt = (req, res) => {
-    res.render('decrypt');
+    const isLoggedIn = req.cookies['navy-efroyim-jwt'] ? true : false;
+    res.render('decrypt', {
+        isLoggedIn
+    });
 };

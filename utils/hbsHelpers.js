@@ -1,4 +1,5 @@
 const hbsHelpers = {
+
     increment: (index) => {
         index++
         return index
@@ -7,7 +8,7 @@ const hbsHelpers = {
         return date.toLocaleString()
     },
     isDecrypted: (decryptedAt) => {
-        if(!decryptedAt) return 'not decrypted';
+        if (!decryptedAt) return 'not decrypted';
         return decryptedAt.toLocaleString();
     }
 }

@@ -9,12 +9,15 @@
                        placeholder="password">
             </label>
             <label for="textarea">
-                <textarea class="textarea textarea-decrypt" name="message" id="textarea" placeholder="Provide password-key to decrypt a message" disabled></textarea>
+                <textarea class="textarea textarea-decrypt" name="message" id="textarea"
+                          placeholder="Provide password-key to decrypt a message" disabled></textarea>
             </label>
 
             <button class="btn-register" id="btn-decrypt" type="submit">decrypt</button>
         </form>
-        <a href="/cockpit" class="main">cockpit</a>
+        {{#if isLoggedIn}}
+            <a href="/messages" class="main">my messages</a>
+        {{/if}}
     </div>
 </div>
 

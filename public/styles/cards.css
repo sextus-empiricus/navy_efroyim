@@ -12,9 +12,11 @@ body {
     color: #4DF45AFF;
     /*font-weight: bold;*/
 }
+
 .table-show {
     width: 550px;
 }
+
 .content-wrapper {
     text-align: start;
     width: 80%;
@@ -87,6 +89,7 @@ body {
 .btn-messages {
     width: 50%;
 }
+
 .delete {
     color: gray;
 }
@@ -105,5 +108,42 @@ body {
     }
     100% {
         opacity: 0;
+    }
+}
+
+@media (max-width: 610px) {
+    .table-show {
+        width: 500px;
+    }
+
+    .card {
+        margin: 0 0 30px 0;
+    }
+    .envelopes-wrapper {
+        opacity: 0;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .table-show {
+        width: 100vw;
+    }
+
+    .content-wrapper {
+        width: 90%;
+    }
+
+    .h2-card {
+        font-size: 3.5rem;
+
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    h2 {
+        font-size: 3rem;
     }
 }

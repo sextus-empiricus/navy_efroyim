@@ -1,0 +1,65 @@
+.table-show {
+    border: solid 10px red;
+    animation: colors .7s infinite;
+    transition: 0s;
+}
+
+h1 {
+    color: red;
+    animation: colors .2s infinite;
+    transition: 0s;
+}
+
+h2 {
+    animation: colors 1s infinite;
+
+}
+
+a {
+    animation: colors .5s infinite;
+
+}
+
+.wobble-hor-bottom {
+    animation: wobble-hor-bottom 0.8s infinite both;
+}
+
+@keyframes colors {
+    0% {
+        border-color: red;
+        color: red;
+    }
+    33% {
+        border-color: lime;
+        color: lime;
+    }
+
+    66% {
+        border-color: gold;
+        color: gold;
+    }
+}
+
+@keyframes wobble-hor-bottom {
+    0%,
+    100% {
+        transform: translateX(0%);
+        transform-origin: 50% 50%;
+    }
+    15% {
+        transform: translateX(-30px) rotate(-6deg);
+    }
+    30% {
+        transform: translateX(15px) rotate(6deg);
+    }
+    45% {
+        transform: translateX(-15px) rotate(-3.6deg);
+    }
+    60% {
+        transform: translateX(9px) rotate(2.4deg);
+    }
+    75% {
+        transform: translateX(-6px) rotate(-1.2deg);
+    }
+}
+

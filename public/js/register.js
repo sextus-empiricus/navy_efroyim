@@ -15,7 +15,7 @@ const signUp = async (email, password, passwordConfirm) => {
         if (res.data.status === 'success') {
             generateAlert(['ok'], ['h2-ok'], 'Thank you for a registration!');
             window.setTimeout(() => {
-                location.assign('/message');
+                location.assign('/cockpit');
             }, 1500)
         } else {
             generateAlert(['error'], ['h2-error'], 'Something went wrong.');

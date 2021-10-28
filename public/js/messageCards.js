@@ -22,19 +22,12 @@ const deleteMessage = async (id, el) => {
         hideElements(card, h1, h2);
         window.setTimeout(() => {
             location.assign('/messages');
-        }, 2500)
+        }, 1000)
     } catch (err) {
         generateAlert(['error'], ['h2-error'], 'Something get wrong.');
         getAlertOut(4000);
     }
 };
-
-
-
-
-
-
-
 
 btnDelete.forEach(el => {
     el.addEventListener('click', async () => {
@@ -47,7 +40,6 @@ btnDecrypt.forEach(el => {
     el.addEventListener('click', e => {
         console.log('click')
         const id = el.dataset.id;
-        document.cookie = `msgId=${id}`
-        location.assign('/decrypt')
+        location.assign(`/decrypt?id=${id}`)
     })
 })

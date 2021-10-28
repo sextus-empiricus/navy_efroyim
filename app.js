@@ -13,7 +13,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({extended: true} ))
+app.use(express.urlencoded({extended: true}))
 app.use(express.static(join(__dirname, 'public')));
 
 app.engine('.hbs', hbs({
@@ -28,6 +28,9 @@ app.use('/api/v1/messages', messagesRouter);
 
 app.use('/', viewRouter);
 
+app.get('*', (req, res) => {
+    res.render('notFound')
+})
 app.use(errorGlobalHandler);
 
 module.exports = app;

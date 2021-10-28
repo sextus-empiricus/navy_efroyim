@@ -18,6 +18,10 @@
     border: solid 2px rgba(77, 244, 90, 0.4);
 }
 
+.warning {
+    border: solid 2px rgba(255, 227, 127, 0.4);
+}
+
 .h2-error {
     font-size: 3rem;
     font-weight: normal;
@@ -32,6 +36,14 @@
     margin: 0;
     padding: 0;
     color: #4df45a;
+}
+
+.h2-warning {
+    font-size: 3rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    color: #ffe37f
 }
 
 .get-out {
@@ -85,5 +97,17 @@
         transform: rotateX(-100deg);
         transform-origin: top;
         opacity: 0;
+    }
+}
+
+@media (max-width: 610px) {
+    .warning {
+        background-color: rgb(45, 43, 56);
+    }
+    .error{
+        background-color: rgb(45, 43, 56);
+    }
+    .ok {
+        background-color: rgb(45, 43, 56);
     }
 }

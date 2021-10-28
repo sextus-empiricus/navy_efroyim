@@ -2,6 +2,8 @@ const Message = require('../models/messageModel.js');
 const catchAsync = require('../utils/catchAsync.js');
 const sendMail = require('../utils/sendMail.js');
 const {decryptText} = require('../utils/cipher.js');
+const {promisify} = require('util');
+const verify = promisify(require('jsonwebtoken').verify);
 
 exports.createMessage = catchAsync(async (req, res) => {
     const newMessage = await Message.create({
@@ -16,8 +18,7 @@ exports.createMessage = catchAsync(async (req, res) => {
         from: req.user.email,
         to: req.body.to,
         subject: `Hello, ${req.user.email} sent you encrypted message!`,
-        text: newMessage.message,   //@TODO - create a message and logic of it
-        // html: "<b>Hello world?</b>"
+        text: `Hello you!\n${req.user.email} sent you an encrypted message.\nFor a security reasons he will pass you a secret key (it\'s necessary to decrypt the message) in other way (e.g. by SMS).\nYou can decrypt the message using this key by the page: http://127.0.0.1:3000/decrypt?id=${newMessage.id}\nHave nice day!`
     };
     await sendMail(mailData);
 
@@ -57,9 +58,11 @@ exports.deleteMessage = catchAsync(async (req, res) => {
 });
 
 exports.decryptMessage = catchAsync(async (req, res) => {
-    const message = await Message.findById(req.body.id);
+    const message = await Message.findById(req.params.id);
     const decryptedMessage = await decryptText(message.message, req.body.password, process.env.CRYPTO_SALT, message.iv)
-    await Message.findByIdAndUpdate(req.body.id, {decryptedAt: new Date()})
+    const jwtDecoded = req.cookies['navy-efroyim-jwt'] ? await verify(req.cookies['navy-efroyim-jwt'], process.env.JWT_SECRETKEY) : '';
+    const messageUserId = ((message.user).toString());
+    if (jwtDecoded.id !== messageUserId) await Message.findByIdAndUpdate(req.params.id, {decryptedAt: new Date()});
     res.status(200).json({
         status: 'success',
         data: decryptedMessage

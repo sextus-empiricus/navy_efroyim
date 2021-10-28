@@ -2,7 +2,12 @@
     <div class="content-wrapper-home"><h1 class="home">Navy-Efroyim Project</h1>
         <h2>Encrypted message sender</h2>
         <button class="btn-get-started" id="btn-get-started">Get Started</button>
-        <a href="/login" class="login">login</a>
+        {{#if isLoggedIn}}
+            <a href="/cockpit" class="login">cockpit</a>
+        {{else}}
+            <a href="/login" class="login">login</a>
+        {{/if}}
+
     </div>
 </div>
 <script src="./js/getStarted.js"></script>

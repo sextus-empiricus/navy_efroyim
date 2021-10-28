@@ -1,9 +1,9 @@
-const User = require('../models/userModel.js');
 const {promisify} = require('util');
 const sign = promisify(require('jsonwebtoken').sign);
 const verify = promisify(require('jsonwebtoken').verify);
-const AppError = require('../utils/AppError.js');
 const {compare} = require('bcryptjs');
+const User = require('../models/userModel.js');
+const AppError = require('../utils/AppError.js');
 const catchAsync = require('../utils/catchAsync.js');
 
 exports.signUp = catchAsync(async (req, res) => {
@@ -11,9 +11,9 @@ exports.signUp = catchAsync(async (req, res) => {
     const token = await sign({id: newUser.id}, process.env.JWT_SECRETKEY, {expiresIn: process.env.JWT_EXPIRESIN})
     req.user = newUser;
     res.cookie('navy-efroyim-jwt', token, {
-            httpOnly: true,
-            maxAge: 3600000
-        })
+        httpOnly: true,
+        maxAge: 3600000
+    })
         .status(201)
         .json({
             status: 'success',
