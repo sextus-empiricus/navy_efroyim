@@ -17,7 +17,7 @@ exports.createMessage = catchAsync(async (req, res) => {
     const mailData = {
         from: req.user.email,
         to: req.body.to,
-        subject: `Hello, ${req.user.email} sent you encrypted message!`,
+        subject: `Hello! ${req.user.email} sent you encrypted message!`,
         text: `Hello you!\n${req.user.email} sent you an encrypted message.\nFor a security reasons he will pass you a secret key (it\'s necessary to decrypt the message) in other way (e.g. by SMS).\nYou can decrypt the message using this key by the page: https://test1239rigi4.herokuapp.com/decrypt?id=${newMessage.id}\nHave nice day!`
     };
     await sendMail(mailData);

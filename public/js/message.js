@@ -3,7 +3,6 @@ import {generateAlert, getAlertOut} from './alerts.js';
 const btnSend = document.getElementById('btn-send');
 const inputPassword = document.getElementById('input-password');
 
-
 const sendMessage = async (title, to, password, message) => {
     try {
         const res = await axios({

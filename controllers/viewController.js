@@ -1,6 +1,5 @@
 const Messages = require('../models/messageModel.js');
 
-
 exports.home = (req, res) => {
     const isLoggedIn = req.cookies['navy-efroyim-jwt'] ? true : false;
     res.render('home', {

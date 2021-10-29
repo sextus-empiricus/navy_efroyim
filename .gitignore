@@ -1,5 +1,5 @@
 .idea/
 node_modules/
 dev-data/
-.env
+*.env
 test.js
