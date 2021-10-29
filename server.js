@@ -9,6 +9,6 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cl
     console.log(`#\tDatabase connected...`)
 });
 
-app.listen(process.env.PORT || port, 'localhost', () => {
+app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
     console.log(`#\tListening on ${port}...`)
 });
